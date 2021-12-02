@@ -1,14 +1,11 @@
-function sendData(data, endpoint, headers) {
+function sendData(data, endpoint, apiKey) {
 	var xhr = new XMLHttpRequest();
 	var stringifiedData = JSON.stringify(data);
 
 	xhr.open('POST', endpoint);
 	xhr.setRequestHeader('Content-type', 'application/json');
+	xhr.setRequestHeader('x-frenzy-authorization', apiKey);
 	
-	for (h in headers){
-       		header = headers[h];
-       		xhr.setRequestHeader(header.key, header.value);
-	}
  	xhr.send(stringifiedData);
 
   	xhr.onload = function () {
